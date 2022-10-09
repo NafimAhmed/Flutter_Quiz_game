@@ -46,6 +46,7 @@ class _Event_ListState extends State<Event_List> {
         Uri.parse('https://herosapp.nyc3.digitaloceanspaces.com/quiz.json')
     );
 
+
     setState((){
       apiMap = jsonDecode(response.body);
     });
@@ -56,13 +57,16 @@ class _Event_ListState extends State<Event_List> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(
+    return apiMap!=null?MaterialApp(
+
       home: Scaffold(
 
         backgroundColor: Colors.black,
 
 
-          body: Card(
+          body: Center(
+            child: Center(
+              child: Card(
             child:
             PageView.builder(
               physics: NeverScrollableScrollPhysics(),
@@ -73,7 +77,9 @@ class _Event_ListState extends State<Event_List> {
 
 
 
-                  return Container(
+                  return Center(
+                    child: Center(
+                      child: Container(
                     color: Colors.black,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -104,7 +110,7 @@ class _Event_ListState extends State<Event_List> {
                                       width: 30,
                                     ),
 
-                                    Text("score : "+apiMap!['questions'][index]["score"].toString(),
+                                    Text("score : "+totalScore.toString(),//+apiMap!['questions'][index]["score"].toString(),
                                       style: GoogleFonts.raleway(
                                           fontSize: 20,
                                           color: Colors.black
@@ -117,16 +123,31 @@ class _Event_ListState extends State<Event_List> {
                             )
                         ),
                         ///////////////////////////////////////////
-                        Padding(padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
-                            child: DottedBorder(
+                        Padding(padding: EdgeInsets.fromLTRB(25, 25, 25, 25),
+                            child: Container(
+
                               color: Colors.white,
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                                child: DottedBorder(
+                              color: Colors.black,
                               strokeWidth: 2,
                               dashPattern: [
                                 5,
                                 5,
                               ],
-                              child: Column(
+                              child: Container(
+                                color: Colors.white,
+                                child: Column(
                               children: [
+                                //////////////////////////////////////
+                                Text(""+apiMap!['questions'][index]["score"].toString()+" Point",
+                                  style: GoogleFonts.raleway(
+                                      fontSize: 20,
+                                      color: Colors.black
+                                  ),
+                                ),
+                                SizedBox(height: 10,),
 
                                 //////////////////////////////////////////
                                 Image(
@@ -166,13 +187,13 @@ class _Event_ListState extends State<Event_List> {
 
                               ],
 
-                              )
+                              ),)
 
 
 
 
 
-                            )
+                            ),),)
                         ),
 
                         ////////////////////////////////////////
@@ -285,14 +306,25 @@ class _Event_ListState extends State<Event_List> {
 
                         /////////////////////////////////////
                       ],
-                    ),
+                    ),),),
                   );
                 },
             ),
-          )
+          ),),)
 
 
       ),
+    ):Scaffold(
+      body: Center(
+        child: Text("Loading-----------",
+          style: GoogleFonts.raleway(
+            fontSize: 30,
+            fontWeight: FontWeight.bold
+          ),
+
+
+        ),
+      )
     );
   }
 

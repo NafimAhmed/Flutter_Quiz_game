@@ -51,8 +51,11 @@ class _HomePageState extends State<HomePage>
 
       home: Scaffold(
         backgroundColor: Colors.black,
-        body: Column(
+        body: Center(
+            child: SingleChildScrollView(
+              child : Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
             Padding(padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
@@ -178,6 +181,8 @@ class _HomePageState extends State<HomePage>
 
           ],
         ),
+        ),
+      ),
       ),
     );
 
